@@ -560,15 +560,10 @@ function generatePDF(fn, ln) {
 
   doc.setFillColor(...dark);
   doc.rect(0, y, 210, 22, 'F');
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(11);
-  doc.setTextColor(...gold);
-  doc.text('Book Your Free Consultation', 20, y + 8);
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(9);
   doc.setTextColor(200, 200, 190);
-  doc.text('calendar.app.google/3BcaeHnJ54Ffudds5', 20, y + 15);
-  doc.text('Mike Vanderkruyk · Royal LePage Coast Capital Realty · 1841 Oak Bay Ave #108, Victoria, BC', 20, y + 20);
+  doc.text('Mike Vanderkruyk · Royal LePage Coast Capital Realty · 1841 Oak Bay Ave #108, Victoria, BC', 20, y + 15);
 
   doc.addPage();
   doc.setFillColor(245, 242, 234);
