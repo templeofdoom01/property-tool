@@ -724,7 +724,61 @@ async function runAnalysis() {
   document.getElementById('formPanel').style.display = 'none';
   document.getElementById('loadingState').classList.add('active');
 
-  const prompt = `You are a senior real estate analyst. Generate a professional market analysis for a homeowner who submitted their property details online.
+  const prompt = `You are a senior real estate analyst specializing in Victoria BC real estate. Generate a professional market analysis using the following current market benchmarks:
+
+CURRENT VICTORIA BC MARKET DATA (April 2026):
+- MLS HPI Benchmark for single family home in Victoria Core: $1,339,100
+- MLS HPI Benchmark for condos in Victoria Core: $558,300
+- Active listings in Greater Victoria: 3,710
+- Market condition: Balanced market, modest price softening year over year
+- Average days on market: 25-40 days depending on neighbourhood
+- Fernwood/Central Park median list price: ~$1,066,000
+- Duplex price range in Victoria Core: $900,000 - $1,300,000 depending on size and condition
+- Price per sqft for Victoria Core residential: $450 - $600 depending on property type and condition
+- Half duplex in Fernwood/Central Park typical range: $750,000 - $950,000
+- Full duplex (both sides) in Fernwood/Central Park typical range: $950,000 - $1,350,000
+
+Use these benchmarks to anchor your valuation. Adjust up or down based on:
+- Property size vs neighbourhood average
+- Year built and condition
+- Renovation level
+- Specific street and walkability
+- Number of bedrooms/bathrooms vs comparable sales
+- Whether it is a full duplex (both units) or half duplex (one unit)
+
+Property details:
+- Address: ${address}, ${city}
+- Type: ${propType}
+- Bedrooms: ${beds} | Bathrooms: ${baths || 'not provided'}
+- Square Footage: ${sqft} sqft
+- Year Built: ${yearBuilt || 'not provided'}
+- Lot Size: ${lotSize || 'not provided'} sqft
+- Renovations: ${reno}
+- Goal: ${goal}
+${firstName ? `- Owner first name: ${firstName}` : ''}
+
+Return ONLY valid JSON, no markdown, no backticks:
+{
+  "estimatedValue": "$X,XXX,XXX",
+  "priceRange": "$X,XXX,XXX – $X,XXX,XXX",
+  "pricePerSqft": "$XXX",
+  "marketCondition": "e.g. Balanced Market",
+  "daysOnMarket": "e.g. 25–35 days",
+  "listingPrice": "$X,XXX,XXX",
+  "scores": {
+    "marketStrength": 82,
+    "locationScore": 78,
+    "valueScore": 71,
+    "demandScore": 85
+  },
+  "strengths": ["sentence 1", "sentence 2", "sentence 3"],
+  "opportunities": ["sentence 1", "sentence 2"],
+  "marketSummary": "2-3 sentences about local market conditions and how this property fits.",
+  "pricingStrategy": "2 sentences tailored to the seller's stated goal.",
+  "nextSteps": "1 personalized sentence${firstName ? ' addressing ' + firstName : ''} about booking a consultation with Mike Vanderkruyk.",
+  "keyTags": ["tag1", "tag2", "tag3", "tag4"],
+  "tagTypes": ["green", "green", "amber", "green"]
+}
 
 Property:
 - Address: ${address}, ${city}
