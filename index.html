@@ -570,14 +570,14 @@ function generatePDF(fn, ln) {
   doc.text('calendar.app.google/3BcaeHnJ54Ffudds5', 20, y + 15);
   doc.text('Mike Vanderkruyk · Royal LePage Coast Capital Realty · 1841 Oak Bay Ave #108, Victoria, BC', 20, y + 20);
 
-  y += 30;
+  doc.addPage();
   doc.setFillColor(245, 242, 234);
-  doc.rect(0, y, 210, 20, 'F');
+  doc.rect(0, 0, 210, 25, 'F');
   doc.setFont('helvetica', 'italic');
-  doc.setFontSize(7);
+  doc.setFontSize(8);
   doc.setTextColor(...mid);
   const disc = doc.splitTextToSize('Disclaimer: This report is for informational purposes only and does not constitute real estate advice. Results are AI-generated estimates and are not an exact reflection of actual property value. Please consult a licensed real estate professional for an accurate assessment.', 170);
-  doc.text(disc, 20, y + 6);
+  doc.text(disc, 20, 12);
 
   const filename = 'Property-Analysis-' + (r.address || 'Report').replace(/[^a-z0-9]/gi, '-') + '.pdf';
   doc.save(filename);
